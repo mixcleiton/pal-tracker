@@ -29,11 +29,11 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testCreate() {
-        long projectId = 123L;
-        long userId = 456L;
+        Long projectId = 123L;
+        Long userId = 456L;
         TimeEntry timeEntryToCreate = new TimeEntry(projectId, userId, LocalDate.parse("2017-01-08"), 8);
 
-        long timeEntryId = 1L;
+        Long timeEntryId = 1L;
         TimeEntry expectedResult = new TimeEntry(timeEntryId, projectId, userId, LocalDate.parse("2017-01-08"), 8);
         doReturn(expectedResult)
             .when(timeEntryRepository)
@@ -50,9 +50,9 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testRead() {
-        long timeEntryId = 1L;
-        long projectId = 123L;
-        long userId = 456L;
+        Long timeEntryId = 1L;
+        Long projectId = 123L;
+        Long userId = 456L;
         TimeEntry expected = new TimeEntry(timeEntryId, projectId, userId, LocalDate.parse("2017-01-08"), 8);
         doReturn(expected)
             .when(timeEntryRepository)
@@ -67,7 +67,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testRead_NotFound() {
-        long nonExistentTimeEntryId = 1L;
+        Long nonExistentTimeEntryId = 1L;
         doReturn(null)
             .when(timeEntryRepository)
             .find(nonExistentTimeEntryId);
@@ -93,9 +93,9 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testUpdate() {
-        long timeEntryId = 1L;
-        long projectId = 987L;
-        long userId = 654L;
+        Long timeEntryId = 1L;
+        Long projectId = 987L;
+        Long userId = 654L;
         TimeEntry expected = new TimeEntry(timeEntryId, projectId, userId, LocalDate.parse("2017-01-07"), 4);
         doReturn(expected)
             .when(timeEntryRepository)
@@ -110,7 +110,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testUpdate_NotFound() {
-        long nonExistentTimeEntryId = 1L;
+        Long nonExistentTimeEntryId = 1L;
         doReturn(null)
             .when(timeEntryRepository)
             .update(eq(nonExistentTimeEntryId), any(TimeEntry.class));
@@ -121,7 +121,7 @@ public class TimeEntryControllerTest {
 
     @Test
     public void testDelete() {
-        long timeEntryId = 1L;
+        Long timeEntryId = 1L;
         ResponseEntity response = controller.delete(timeEntryId);
         verify(timeEntryRepository).delete(timeEntryId);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
