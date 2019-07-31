@@ -64,7 +64,7 @@ function wait_for_tunnel() {
 
     set +e
 
-    for x in {1..10}; do
+    for x in {1..50}; do
         $(nc -z localhost 63306)
         nc_status=$?
         if [[ "$nc_status" == "0" ]]; then
